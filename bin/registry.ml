@@ -1,0 +1,27 @@
+let days : (module Day.S) option array = [|
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+	None;
+|]

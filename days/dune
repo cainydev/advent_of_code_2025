@@ -1,0 +1,6 @@
+(include_subdirs qualified)
+
+(library
+ (name aoc_days)
+ (libraries aoc_lib base stdio str psq re grid ppx_sexp_conv ppx_compare ppx_hash)
+ (preprocess (pps ppx_compare ppx_sexp_conv ppx_hash)))
