@@ -1,5 +1,5 @@
 let days : (module Day.S) option array = [|
-	None;
+	Some (module Aoc_days.Day01.Solution);
 	None;
 	None;
 	None;
