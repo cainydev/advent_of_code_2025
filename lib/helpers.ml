@@ -113,3 +113,12 @@ let zipi4 l1 l2 l3 l4 =
     | _, _, _, _ -> List.rev acc
   in
   aux 0 [] l1 l2 l3 l4
+
+let enum xs =
+  let rec aux n acc xs =
+    match xs with
+    | x :: xs -> aux (n + 1) ((x, n) :: acc) xs
+    | [] -> List.rev acc
+  in
+  aux 0 [] xs
+

@@ -26,19 +26,14 @@ let part1 (input: t): string =
   !count |> Int.to_string
 
 let part2 (input: t): string =
-  let cur = ref 50 in 
-  let count = ref 0 in 
+  List.fold_left input ~init:(50, 0) ~f:(fun (cur, count) r ->
+    let rem = Int.rem r 100 in
 
-  List.iter input ~f:(fun r ->
-    count := !count + Int.abs (r / 100);
-    let x_rest = Int.rem r 100 in
+    let zeros =
+      if ((rem > 0 && cur + rem >= 100) || (rem < 0 && cur + rem <= 0 && cur > 0))
+      then Int.abs (r / 100) + 1
+      else Int.abs (r / 100)
+    in
 
-    if (x_rest > 0 && !cur + x_rest >= 100) then count := !count + 1
-    else if (x_rest < 0 && !cur + x_rest <= 0 && !cur > 0) then count := !count + 1;
-
-    cur := (!cur + r) % 100;
-
-    Stdio.printf "Move: %d, New Pos: %d, Count: %d\n" r !cur !count
-  );
-
-  !count |> Int.to_string
+    ((cur + r) % 100, count + zeros)
+  ) |> snd |> Int.to_string
