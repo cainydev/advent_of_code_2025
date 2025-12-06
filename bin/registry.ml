@@ -4,7 +4,7 @@ let days : (module Day.S) option array = [|
 	Some (module Aoc_days.Day03.Solution);
 	Some (module Aoc_days.Day04.Solution);
 	Some (module Aoc_days.Day05.Solution);
-	None;
+	Some (module Aoc_days.Day06.Solution);
 	None;
 	None;
 	None;
