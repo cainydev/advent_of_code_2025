@@ -80,6 +80,14 @@ let zipi l1 l2 =
   in
   aux 0 [] l1 l2
 
+let zip_with l1 l2 ~f =
+  let rec aux acc l1 l2 =
+    match l1, l2 with
+    | x :: xs, y:: ys -> aux (f x y :: acc) xs ys
+    | _, _ -> List.rev acc
+  in
+  aux [] l1 l2
+
 let zip3 l1 l2 l3 =
   let rec aux acc l1 l2 l3 =
     match l1, l2, l3 with
