@@ -130,3 +130,45 @@ let enum xs =
   in
   aux 0 [] xs
 
+module IVec2 = struct
+  module T = struct
+    type t = int * int [@@deriving compare, sexp, hash]
+  end
+
+  include T
+
+  include Comparator.Make(T)
+
+  let dist_sq (x1, y1) (x2, y2) =
+    let dx = x1 - x2 in
+    let dy = y1 - y2 in
+    (dx * dx) + (dy * dy)
+
+  let dist p1 p2 =
+    Float.sqrt (Float.of_int (dist_sq p1 p2))
+
+  let manhattan (x1, y1) (x2, y2) =
+    (Int.abs (x2 - x1), Int.abs (y2 - y1))
+end
+
+module IVec3 = struct
+  module T = struct
+    type t = int * int * int [@@deriving compare, sexp, hash]
+  end
+
+  include T
+
+  include Comparator.Make(T)
+
+  let dist_sq (x1, y1, z1) (x2, y2, z2) =
+    let dx = x1 - x2 in
+    let dy = y1 - y2 in
+    let dz = z1 - z2 in
+    (dx * dx) + (dy * dy) + (dz * dz)
+
+  let dist p1 p2 =
+    Float.sqrt (Float.of_int (dist_sq p1 p2))
+
+  let manhattan (x1, y1, z1) (x2, y2, z2) =
+    Int.abs (x2 - x1) + Int.abs (y2 - y1) + Int.abs (z2 - z1)
+end
